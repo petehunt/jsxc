@@ -1,0 +1,15 @@
+{
+  "name": "jsx2",
+  "version": "0.0.1",
+  "description": "Simple JSX command-line tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jsx",
+    "react"
+  ],
+  "author": "Pete Hunt",
+  "license": "Apache 2"
+}
