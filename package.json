@@ -6,8 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "jsx2": "bin/jsx2"
+  },
   "dependencies": {
     "chokidar": "~0.8.0",
+    "global": "~3.2.7",
     "optimist": "~0.6.0",
     "react-tools": "~0.5.1"
   },
@@ -15,6 +19,7 @@
     "jsx",
     "react"
   ],
+  "preferGlobal": true,
   "author": "Pete Hunt",
   "license": "Apache 2"
 }
