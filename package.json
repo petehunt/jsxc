@@ -6,6 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "dependencies": {
+    "chokidar": "~0.8.0",
+    "optimist": "~0.6.0",
+    "react-tools": "~0.5.1"
+  },
   "keywords": [
     "jsx",
     "react"
