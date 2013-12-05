@@ -12,6 +12,7 @@ var path = require('path');
 var transform = require('react-tools').transform;
 
 function handleChange(args, changedPath) {
+  var startTime = Date.now();
   var src = path.resolve(args.argv._[0]);
   var dest = path.resolve(args.argv._[1]);
 
@@ -30,6 +31,15 @@ function handleChange(args, changedPath) {
       if (err) {
         console.error(err);
       }
+
+      if (args.argv.s) {
+        return;
+      }
+
+      var duration = Date.now() - startTime;
+      console.log(
+        '[' + new Date() + '] ' + JSON.stringify(absoluteChangedPath) + ' -> ' + JSON.stringify(changedDest) + ' (' + duration.toFixed(0) + ' ms)'
+      );
     });
   });
 }
@@ -51,6 +61,10 @@ function main() {
     .string('e')
     .default('e', '.js')
     .describe('e', 'Extension of files containing JSX syntax')
+    .alias('s', 'silent')
+    .boolean('s')
+    .describe('s', 'Don\'t display non-error logging')
+    .default('s', false)
     .alias('h', 'help')
     .boolean('h')
     .describe('h', 'Show this help message');
