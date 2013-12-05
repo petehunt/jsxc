@@ -27,7 +27,16 @@ function handleChange(args, changedPath) {
       console.error(err);
       return;
     }
-    fs.writeFile(changedDest, transform(changedSrc), {encoding: 'utf8'}, function(err) {
+
+    try {
+      var transformedSrc = transform(changedSrc);
+    } catch (e) {
+      console.error('[' + new Date() + '] *** ERROR TRANSFORMING ' + JSON.stringify(absoluteChangedPath) + ':');
+      console.error('  ' + e.toString());
+      return;
+    }
+
+    fs.writeFile(changedDest, transformedSrc, {encoding: 'utf8'}, function(err) {
       if (err) {
         console.error(err);
       }
