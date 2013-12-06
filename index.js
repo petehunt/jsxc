@@ -12,7 +12,7 @@ var path = require('path');
 var transform = require('react-tools').transform;
 var VERSION = require('./package.json').version
 
-function handleChange(args, changedPath) {
+function handleChange(exitOnError, args, changedPath) {
   var startTime = Date.now();
   var src = path.resolve(args.argv._[0]);
   var dest = path.resolve(args.argv._[1]);
@@ -26,6 +26,9 @@ function handleChange(args, changedPath) {
   fs.readFile(absoluteChangedPath, {encoding: 'utf8'}, function(err, changedSrc) {
     if (err) {
       console.error(err);
+      if (exitOnError) {
+        process.exit(exitOnError);
+      }
       return;
     }
 
@@ -34,12 +37,18 @@ function handleChange(args, changedPath) {
     } catch (e) {
       console.error('[' + new Date() + '] *** ERROR TRANSFORMING ' + JSON.stringify(absoluteChangedPath) + ':');
       console.error('  ' + e.toString());
+      if (exitOnError) {
+        process.exit(exitOnError);
+      }
       return;
     }
 
     fs.writeFile(changedDest, transformedSrc, {encoding: 'utf8'}, function(err) {
       if (err) {
         console.error(err);
+        if (exitOnError) {
+          process.exit(exitOnError);
+        }
       }
 
       if (args.argv.s) {
@@ -130,8 +139,8 @@ function main() {
       persistent: args.argv.w
     });
 
-    watcher.on('add', handleChange.bind(null, args));
-    watcher.on('change', handleChange.bind(null, args));
+    watcher.on('add', handleChange.bind(null, false, args));
+    watcher.on('change', handleChange.bind(null, false, args));
     watcher.on('error', function(err) {
       console.error(err);
     });
@@ -164,7 +173,7 @@ function main() {
           console.error(err);
           process.exit(1);
         }
-        files.forEach(handleChange.bind(null, args));
+        files.forEach(handleChange.bind(null, 2, args));
       });
     }
   }
