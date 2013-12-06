@@ -1,5 +1,5 @@
 {
-  "name": "jsx2",
+  "name": "jsxc",
   "version": "0.1.0",
   "description": "Simple JSX command-line tool",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "jsx2": "bin/jsx2"
+    "jsxc": "bin/jsxc"
   },
   "dependencies": {
     "chokidar": "~0.8.0",

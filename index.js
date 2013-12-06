@@ -66,7 +66,7 @@ function handleChange(exitOnError, args, changedPath) {
 function main() {
   var args = optimist
     .usage(
-      'jsx2 ' + VERSION + ': Convert files containing JSX syntax to regular JavaScript.\n' +
+      'jsxc ' + VERSION + ': Convert files containing JSX syntax to regular JavaScript.\n' +
       'Usage:\n' +
       '  $0 [input file] [output file] (convert a single file)\n' +
       '  $0 [input file] (convert a single file and print to stdout)\n' +
