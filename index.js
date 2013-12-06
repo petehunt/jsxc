@@ -110,6 +110,9 @@ function main() {
 
     var watcher = chokidar.watch(args.argv._[0], {
       ignored: function(path) {
+        if (fs.lstatSync(path).isDirectory()) {
+          return false;
+        }
         return path.slice(path.length - args.argv.extension.length) !== args.argv.extension;
       },
       persistent: args.argv.w
@@ -117,6 +120,9 @@ function main() {
 
     watcher.on('add', handleChange.bind(null, args));
     watcher.on('change', handleChange.bind(null, args));
+    watcher.on('error', function(err) {
+      console.error(err);
+    });
   } else {
     var srcDir = fs.lstatSync(args.argv._[0]).isDirectory();
     var destDir = fs.lstatSync(args.argv._[1]).isDirectory();
