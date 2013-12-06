@@ -108,6 +108,17 @@ function main() {
       console.error(args.help());
       process.exit(1);
     }
+    if (!fs.existsSync(args.argv._[0]) ||
+        !fs.lstatSync(args.argv._[0]).isDirectory()) {
+      console.error('ERROR: ' + JSON.stringify(args.argv._[0]) + ' must be an existing directory');
+      process.exit(1);
+    }
+    if (!fs.existsSync(args.argv._[1]) ||
+        !fs.lstatSync(args.argv._[1]).isDirectory()) {
+      console.error('ERROR: ' + JSON.stringify(args.argv._[1]) + ' must be an existing directory');
+      process.exit(1);
+    }
+
 
     var watcher = chokidar.watch(args.argv._[0], {
       ignored: function(path) {
@@ -125,6 +136,11 @@ function main() {
       console.error(err);
     });
   } else {
+    if (!fs.existsSync(args.argv._[0])) {
+      console.error('ERROR: ' + JSON.stringify(args.argv._[0]) + ' must exist');
+      process.exit(1);
+    }
+
     var srcDir = fs.lstatSync(args.argv._[0]).isDirectory();
     var destDir = fs.lstatSync(args.argv._[1]).isDirectory();
     if (srcDir !== destDir) {
