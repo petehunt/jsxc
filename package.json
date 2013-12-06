@@ -1,6 +1,6 @@
 {
   "name": "jsx2",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Simple JSX command-line tool",
   "main": "index.js",
   "scripts": {

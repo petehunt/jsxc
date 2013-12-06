@@ -10,6 +10,7 @@ var glob = require('glob');
 var optimist = require('optimist');
 var path = require('path');
 var transform = require('react-tools').transform;
+var VERSION = require('./package.json').version
 
 function handleChange(args, changedPath) {
   var startTime = Date.now();
@@ -56,7 +57,7 @@ function handleChange(args, changedPath) {
 function main() {
   var args = optimist
     .usage(
-      'Convert files containing JSX syntax to regular JavaScript.\n' +
+      'jsx2 ' + VERSION + ': Convert files containing JSX syntax to regular JavaScript.\n' +
       'Usage:\n' +
       '  $0 [input file] [output file] (convert a single file)\n' +
       '  $0 [input file] (convert a single file and print to stdout)\n' +
