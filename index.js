@@ -72,7 +72,7 @@ function main() {
       '  $0 [src file] (convert a single file and print to stdout)\n' +
       '  $0 - (convert stdin and print to stdout)\n' +
       '  $0 [src dir] [dest dir] (convert all files in src dir and write to dest dir)\n' +
-      '  $0 --extension .jsx [src dir] [src dir] (convert all .jsx files in src dir to .js)'
+      '  $0 --extension .jsx [src dir] [src dir] (convert all .jsx files in src dir to .js)' +
       '  $0 --watch [src dir] [dest dir] (watch src dir and place converted files in dest dir)\n' +
       '  $0 --extension .jsx --watch [src dir] [src dir] (watch all .jsx files in src dir and convert to .js)'
     )
