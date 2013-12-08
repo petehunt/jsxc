@@ -134,8 +134,12 @@ function main() {
 
     var watcher = chokidar.watch(args.argv._[0], {
       ignored: function(path) {
-        if (fs.lstatSync(path).isDirectory()) {
-          return false;
+        try {
+          if (fs.lstatSync(path).isDirectory()) {
+            return false;
+          }
+        } catch (e) {
+          // ignore files you can't stat
         }
         return path.slice(path.length - args.argv.extension.length) !== args.argv.extension;
       },
