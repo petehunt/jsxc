@@ -147,6 +147,11 @@ function main() {
       process.exit(1);
     }
 
+    if (!fs.existsSync(args.argv._[1])) {
+      console.error('ERROR: ' + JSON.stringify(args.argv._[1]) + ' must exist');
+      process.exit(1);
+    }
+
     var srcDir = fs.lstatSync(args.argv._[0]).isDirectory();
     var destDir = fs.lstatSync(args.argv._[1]).isDirectory();
     if (srcDir !== destDir) {
