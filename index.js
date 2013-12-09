@@ -1,12 +1,7 @@
-// stdin -> stdout (with `-` as an arg)
-// single filename in -> stdout
-// dir in dir out
-// --watch
-// --extension
-
 var chokidar = require('chokidar');
 var fs = require('fs');
 var glob = require('glob');
+var mkdirp = require('mkdirp').sync;
 var optimist = require('optimist');
 var path = require('path');
 var transform = require('react-tools').transform;
@@ -43,6 +38,7 @@ function handleChange(exitOnError, args, changedPath) {
       return;
     }
 
+    mkdirp(path.dirname(changedDest));
     fs.writeFile(changedDest, transformedSrc, {encoding: 'utf8'}, function(err) {
       if (err) {
         console.error(err);
@@ -125,12 +121,6 @@ function main() {
       console.error('ERROR: ' + JSON.stringify(args.argv._[0]) + ' must be an existing directory');
       process.exit(1);
     }
-    if (!fs.existsSync(args.argv._[1]) ||
-        !fs.lstatSync(args.argv._[1]).isDirectory()) {
-      console.error('ERROR: ' + JSON.stringify(args.argv._[1]) + ' must be an existing directory');
-      process.exit(1);
-    }
-
 
     var watcher = chokidar.watch(args.argv._[0], {
       ignored: function(path) {
