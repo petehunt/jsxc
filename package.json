@@ -1,6 +1,6 @@
 {
   "name": "jsxc",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Simple JSX command-line tool",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "glob": "~3.2.7",
     "mkdirp": "~0.3.5",
     "optimist": "~0.6.0",
-    "react-tools": "~0.5.1"
+    "react-tools": "~0.8"
   },
   "keywords": [
     "jsx",
