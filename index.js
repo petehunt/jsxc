@@ -83,6 +83,9 @@ function main() {
     .boolean('s')
     .describe('s', 'Don\'t display non-error logging')
     .default('s', false)
+    .boolean('a')
+    .alias('a', 'harmony')
+    .describe('a', 'Enable ES6 features')
     .alias('h', 'help')
     .boolean('h')
     .describe('h', 'Show this help message');
@@ -102,12 +105,15 @@ function main() {
         buf += chunk;
       });
       process.stdin.on('end', function() {
-        process.stdout.write(transform(buf));
+        process.stdout.write(transform(buf, {harmony: args.argv.a}));
         process.exit(0);
       });
     } else {
       process.stdout.write(
-        transform(fs.readFileSync(args.argv._[0], {encoding: 'utf8'}))
+        transform(
+          fs.readFileSync(args.argv._[0], {encoding: 'utf8'}),
+          {harmony: args.argv.a}
+        )
       );
       process.exit(0);
     }
@@ -161,7 +167,8 @@ function main() {
 
     if (!srcDir) {
       var transformedSrc = transform(
-        fs.readFileSync(args.argv._[0], {encoding: 'utf8'})
+        fs.readFileSync(args.argv._[0], {encoding: 'utf8'}),
+        {harmony: args.argv.a}
       );
       fs.writeFileSync(args.argv._[1], transformedSrc, {encoding: 'utf8'});
       process.exit(0);
