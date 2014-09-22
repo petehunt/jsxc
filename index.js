@@ -5,7 +5,7 @@ var mkdirp = require('mkdirp').sync;
 var optimist = require('optimist');
 var path = require('path');
 var transform = require('react-tools').transform;
-var VERSION = require('./package.json').version
+var VERSION = require('./package.json').version;
 
 function handleChange(exitOnError, args, changedPath) {
   var startTime = Date.now();
