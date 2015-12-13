@@ -1,5 +1,7 @@
 # jsxc: A simplified JSX tool
 
+![unmaintained](http://img.shields.io/badge/status-unmaintained-red.png)
+
 ```
 jsxc 0.1.0: Convert files containing JSX syntax to regular JavaScript.
 Usage:
